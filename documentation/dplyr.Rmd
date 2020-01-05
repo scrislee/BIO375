@@ -24,8 +24,9 @@ Load the `tidyverse` package, which includes `dplyr`, and the `gapminder` packag
 library(tidyverse)  ## install.packages("tidyverse")
 ```
 
-```{r load gapminder}
+```{r load gapminder and magrittr}
 library(gapminder)  ## install.packages("gapminder")
+library(magrittr)  ## install.packages("magrittr")
 ```
 
 ## The gapminder data
@@ -33,6 +34,15 @@ library(gapminder)  ## install.packages("gapminder")
 ```{r}
 gapminder
 ```
+
+## Structure of gapminder tibble
+
+`str()` is a useful function that shows the structure of any object in R.  It is often a good place to start once you have read in the data.
+
+```{r}
+str(gapminder)
+```
+
 
 ## Comparison operators in logical expressions
 
@@ -44,8 +54,9 @@ y <- 9  ## assign the value of 9 to the object y
 y <= 15 ## create a logical expression that will return either TRUE or FALSE
 ```
 
-'filter' takes logical expressions and returns the rows for which all are `TRUE`
+'filter' takes logical expressions and returns the rows for which all are `TRUE`  
 
+Our goal is to *filter the gapminder data fo rows where life expectancy is less than 29*
 ```{r}
 filter(gapminder, lifeExp < 29)
 ```
@@ -54,20 +65,50 @@ filter(gapminder, lifeExp < 29)
 
 Common error: using = instead of ==
 
+Our goal is to *filter the gapminder data for the year 1967*
 ```{r}
-# filter(gapminder, year = 1980)
-#>Error: `year` (`year = 1980`) must not be named, do you need `==`?
+# filter(gapminder, year = 1967)
+#>Error: `year` (`year = 1967`) must not be named, do you need `==`?
 
-filter(gapminder, year ==1967)
+filter(gapminder, year == 1967)
+```
+
+## Another error that catches me:
+
+Double quotes show the beginning and the end of a character vector.  No quotes are used to identify a variable name.  
+  
+In the gapminder data, `country` is a factor with 142 levels.  One of those levels is `"Mexico"`  
+Our goal is to *filter the gapminder data for the country Mexico*.
+
+```{r}
+# filter(gapminder, "country" == Mexico)
+# Error: object 'Mexico' not found
+
+# filter(gapminder, country == Mexico)
+# Error: object 'Mexico' not found
+
+# filter(gapminder, "country" == "Mexico")
+# 0 rows
+
+filter(gapminder, country == "Mexico")
+```
+  
+```{r}
+filter(gapminder, country == "Mexico", year == 1967)
 ```
 
 ## Logical operators
 
 Used to combine multiple arguments.
 
- logical expressions and returns the rows for which all are `TRUE`
+```{r}
+filter(gapminder, country == "Mexico" | year == 1967)
+```
 
-You will also need to load the package '
+
+
+
+
 
 You can also embed plots, for example:
 
