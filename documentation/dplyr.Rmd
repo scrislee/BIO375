@@ -24,6 +24,8 @@ Load the `tidyverse` package, which includes `dplyr`, and the `gapminder` packag
 library(tidyverse)  ## install.packages("tidyverse")
 ```
 
+***
+
 ```{r load gapminder and magrittr}
 library(gapminder)  ## install.packages("gapminder")
 library(magrittr)  ## install.packages("magrittr")
@@ -33,6 +35,20 @@ library(magrittr)  ## install.packages("magrittr")
 
 ```{r}
 gapminder
+```
+
+## `head()` shows the fist part of the object
+
+You can go with the default number of rows, 6
+
+```{r}
+head(gapminder)
+```
+
+Or specify the number of rows you want returned, e.g., 3
+
+```{r}
+head(gapminder, 3)
 ```
 
 ## Structure of gapminder tibble
@@ -56,10 +72,9 @@ y <= 15 ## create a logical expression that will return either TRUE or FALSE
   
 ## Use filter to subset rows (observations)  
 
-
 'filter' takes logical expressions and returns the rows for which all are `TRUE`  
 
-Our goal is to *filter the gapminder data fo rows where life expectancy is less than 29*
+Our goal is to *filter the gapminder data for rows where life expectancy is less than 29*
 ```{r}
 filter(gapminder, lifeExp < 29)
 ```
@@ -140,12 +155,40 @@ select(gapminder, country:lifeExp)
 ```
 
 ## Use `select()` and `filter()` together
-## Pipes using `magrittr` package
 
-You can also embed plots, for example:
+Let's filter for Cambodia and remove the continent and lifeExp columns.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+gap_cambodia <- filter(gapminder, country == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp) # note we need to operate on gap_cambodia not gapminder
+
+gap_cambodia2
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+If you create a new named object every time you wrangle your data--messy.
+
+
+## Pipes using `magrittr` package
+
+```{r}
+gapminder %>% head(3)
+```
+
+Things flow, as through a pipe.
+
+```{r}
+gapminder %>%
+  select(country:lifeExp) %>%
+  head(3)
+```
+
+Clean and convenient version of earlier example
+```{r}
+gap_cambodia <- gapminder %>%
+  filter(country == "Cambodia") %>%
+  select(year, lifeExp)
+gap_cambodia
+
+```
+
+
