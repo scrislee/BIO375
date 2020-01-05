@@ -1,0 +1,78 @@
+---
+title: "dplyr"
+author: "Sarah Lee"
+date: "1/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Resources
+
+* Jenny Bryan's STAT545: [Introduction to dplyr](https://stat545.com/dplyr-intro.html#think-before-you-create-excerpts-of-your-data)
+* Hadley Wickham & Garrett Grolemond's R for Data Science: [Data Transformation](https://r4ds.had.co.nz/transform.html#introduction-2)
+* Ocean Health Index: [Data Wrangling](http://ohi-science.org/data-science-training/dplyr.html)
+
+
+## Getting Started
+
+Load the `tidyverse` package, which includes `dplyr`, and the `gapminder` package with data
+
+```{r load tidyverse}
+library(tidyverse)  ## install.packages("tidyverse")
+```
+
+```{r load gapminder}
+library(gapminder)  ## install.packages("gapminder")
+```
+
+## The gapminder data
+
+```{r}
+gapminder
+```
+
+## Comparison operators in logical expressions
+
+*True or False*: The object y less than or equal to 15.
+
+```{r}
+y <- 9  ## assign the value of 9 to the object y
+
+y <= 15 ## create a logical expression that will return either TRUE or FALSE
+```
+
+'filter' takes logical expressions and returns the rows for which all are `TRUE`
+
+```{r}
+filter(gapminder, lifeExp < 29)
+```
+
+## Mind your equals signs
+
+Common error: using = instead of ==
+
+```{r}
+# filter(gapminder, year = 1980)
+#>Error: `year` (`year = 1980`) must not be named, do you need `==`?
+
+filter(gapminder, year ==1967)
+```
+
+## Logical operators
+
+Used to combine multiple arguments.
+
+ logical expressions and returns the rows for which all are `TRUE`
+
+You will also need to load the package '
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
