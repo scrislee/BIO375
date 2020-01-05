@@ -2,7 +2,7 @@
 title: "dplyr"
 author: "Sarah Lee"
 date: "1/5/2020"
-output: html_document
+output: powerpoint_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -53,9 +53,6 @@ y <- 9  ## assign the value of 9 to the object y
 
 y <= 15 ## create a logical expression that will return either TRUE or FALSE
 ```
-  
-## Use filter to subset rows (observations)  
-
 
 'filter' takes logical expressions and returns the rows for which all are `TRUE`  
 
@@ -95,8 +92,6 @@ Our goal is to *filter the gapminder data for the country Mexico*.
 
 filter(gapminder, country == "Mexico")
 ```
-
-Our goal is to *filter the gapminder data for the country Mexico in the year 1967*
   
 ```{r}
 filter(gapminder, country == "Mexico", year == 1967)
@@ -105,8 +100,6 @@ filter(gapminder, country == "Mexico", year == 1967)
 ## Logical operators
 
 Used to combine multiple arguments.
-
-Our goal is to *filter the gapminder data for the countries Mexico and Canada*
 
 ```{r}
 filter(gapminder, country %in% c("Mexico", "Canada"))
@@ -117,30 +110,8 @@ filter(gapminder, country == "Mexico" | country == "Canada")
 ```
 
 
-  
-## Use `select()` to subset the data by columns (variables) by name
-
-Identify the columns to keep by name
-
-```{r}
-select(gapminder, year, lifeExp)
-```
-
-Or Identify the columns to remove by name using "-"
-  
-```{r}
-select(gapminder, -continent, -lifeExp) # you can use - to deselect columns
-```
 
 
-## Select columns between country and lifeExp
-
-```{r}
-select(gapminder, country:lifeExp)
-```
-
-## Use `select()` and `filter()` together
-## Pipes using `magrittr` package
 
 You can also embed plots, for example:
 
