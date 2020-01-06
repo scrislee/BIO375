@@ -37,13 +37,15 @@ library(magrittr)  ## install.packages("magrittr")
 gapminder
 ```
 
-## `head()` shows the fist part of the object
+## `head()` shows the first part of the object
 
 You can go with the default number of rows, 6
 
 ```{r}
 head(gapminder)
 ```
+
+***
 
 Or specify the number of rows you want returned, e.g., 3
 
